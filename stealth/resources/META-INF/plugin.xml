@@ -1,0 +1,38 @@
+<idea-plugin>
+  <id>com.wgluka.stealth</id>
+  <name>stealth</name>
+  <version>1.0</version>
+  <vendor email="853786834@163.com" url="https://github.com/Wgluka">wgluka</vendor>
+
+  <description><![CDATA[
+     add current line as parameters
+    ]]></description>
+
+  <change-notes><![CDATA[
+      add current line as parameters
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="139.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="com.wgluka.plugin.stealth" class="com.wgluka.actions.StealthAction" text="Stealth"
+            description="use current line as new parameters">
+      <add-to-group group-id="EditMenu" anchor="before" relative-to-action="CutCopyPasteGroup"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt P"/>
+    </action>
+  </actions>
+
+</idea-plugin>
