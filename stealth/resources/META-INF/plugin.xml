@@ -1,5 +1,5 @@
 <idea-plugin>
-  <id>com.wgluka.stealth</id>
+  <id>com.wgluka.stealth1</id>
   <name>stealth</name>
   <version>1.0</version>
   <vendor email="853786834@163.com" url="https://github.com/Wgluka">wgluka</vendor>
@@ -31,7 +31,7 @@
     <action id="com.wgluka.plugin.stealth" class="com.wgluka.actions.StealthAction" text="Stealth"
             description="use current line as new parameters">
       <add-to-group group-id="EditMenu" anchor="before" relative-to-action="CutCopyPasteGroup"/>
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt P"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 0"/>
     </action>
   </actions>
 

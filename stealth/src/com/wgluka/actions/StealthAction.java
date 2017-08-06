@@ -4,7 +4,6 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.CaretModel;
-import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
@@ -26,7 +25,7 @@ public class StealthAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
         // TODO: insert action logic here
-        Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
+        Editor editor = e.getData(CommonDataKeys.EDITOR);
         Project project = e.getProject();
         PsiFile psiFile = e.getData(CommonDataKeys.PSI_FILE);
 
@@ -41,7 +40,7 @@ public class StealthAction extends AnAction {
     @Override
     public void update(AnActionEvent e) {
         Project project = e.getProject();
-        Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
+        Editor editor = e.getData(CommonDataKeys.EDITOR);
         boolean visible = project != null && editor != null;
         e.getPresentation().setVisible(visible);
     }
@@ -49,13 +48,13 @@ public class StealthAction extends AnAction {
     private void addParameter(Editor editor, PsiFile psiFile) {
         init();
 
-        String parameters = disposer.getString(editor);
-        if (parameters == null || parameters.isEmpty()) {
+        PsiMethod method = getCurrentMethod(psiFile, editor);
+        if (method == null) {
             return;
         }
 
-        PsiMethod method = getCurrentMethod(psiFile, editor);
-        if (method == null) {
+        String parameters = disposer.getString(editor, method.getParameterList());
+        if (parameters == null || parameters.isEmpty()) {
             return;
         }
 
